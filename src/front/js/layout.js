@@ -35,7 +35,7 @@ const Layout = () => {
                         <Route element={<NewCat />} path="/new-cat" />
                         <Route element={<Home />} path="/" />
                         <Route element={<Login />} path="/login" />
-
+                        <Route element={<SignUp />} path="/signup" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <div className="fixed-bottom bg-light q">

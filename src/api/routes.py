@@ -15,11 +15,17 @@ api = Blueprint('api', __name__)
 @api.route("/signup", methods=["POST"])
 def sign_up():
     # Ejercicio 2. Completar! Debemos obtener el usuario y password del cuerpo del a petición POST. Luego, añadir el usuario a la base de datos. Puedes comprobar si se ha creado bien el usuario en la pantalla de administración de Flask, o haciendo una consulta a la tabla User. Solo hay que cambiar este método, no toques la URL de la ruta ni añadas el decorador @jwt_required()
+    email = request.json.get('email')
+    password = request.json.get('password')
 
+    user = User(email=email, password=password)
+
+    db.session.add(user)
+    db.session.commit()
     # BONUS: ¿Cómo gestionamos si el usuario ha puesto un email ya presente en la tabla User? Implementa el BONUS cuando acabes todos los ejercicios
 
     # Este return debe cambiarse adecuadamente para devolver un mensaje de OK cuando el usuario se haya creado
-    return jsonify({"msg": "Not implemented"}), 501
+    return jsonify({"msg": "User created successfully"}), 200
 
 
 @api.route('/login', methods=['POST'])
@@ -100,6 +106,5 @@ def get_user_cats():
 
     # Ejercicio 5: COMPLETAR
     # Busca todos los gatos asociados al usuario actual y añádelos a cats_data
-
 
     return jsonify(cats_data), 200
