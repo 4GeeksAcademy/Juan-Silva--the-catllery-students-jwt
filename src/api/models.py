@@ -23,6 +23,7 @@ class Cat(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     image_url = db.Column(db.String(200))
+    
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship('User', backref='cats')

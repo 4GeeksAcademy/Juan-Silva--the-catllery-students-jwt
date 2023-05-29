@@ -9,7 +9,6 @@ export const ListMyCats = () => {
         const token = localStorage.getItem("miTokenJWT");
 
         if (!token) {
-            // No se encontró el token, redirige al usuario a la página principal
             navigate("/");
             return;
         }
@@ -27,7 +26,6 @@ export const ListMyCats = () => {
                     const data = await response.json();
                     setCats(data);
                 } else {
-                    // Si hay un error en la respuesta, redirige al usuario a la página principal
                     navigate("/");
                 }
             } catch (error) {
@@ -40,19 +38,28 @@ export const ListMyCats = () => {
 
     return (
         <div>
-            <h2>Mis Gatos</h2>
-            <div className="row">
-                {cats.map((cat) => (
-                    <div className="col-md-4 mb-4" key={cat.id}>
-                        <div className="card">
-                            <img src={cat.image_url} className="card-img-top" alt={cat.name} />
-                            <div className="card-body">
-                                <h5 className="card-title">{cat.name}</h5>
-                            </div>
-                        </div>
-                    </div>
-                ))}
+  <h2>Mis Gatos</h2>
+  <div className="row">
+    {cats.map((cat) => (
+      <div className="col-md-4 mb-4" key={cat.id}>
+        <div className="card mb-3" style={{ maxWidth: '540px' }}>
+          <div className="row g-0">
+            <div className="col-md-4">
+              <img src={cat.image_url} className="img-fluid rounded-start" alt={cat.name} />
             </div>
+            <div className="col-md-8">
+              <div className="card-body">
+                <h5 className="card-title">{cat.name}</h5>
+                <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    ))}
+  </div>
+</div>
     );
 };
+
